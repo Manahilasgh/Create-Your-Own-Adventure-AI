@@ -9,6 +9,8 @@ class Settings(BaseSettings):
     DEBUG:bool = False
     ALLOWED_ORIGINS:str = ""
     GROQ_API_KEY:str
+    HOST_EMAIL:str
+    HOST_PASSWORD:str
 
     # def __init__(self, **values):
     #     super().__init__(**values)
