@@ -35,7 +35,7 @@ function StoryLoader(){
 
     }
         const createNewStory = () =>{
-            navigate("/")
+            navigate("/story")
         }
         if(loading){
             return <LoadingStatus theme={"story"} />

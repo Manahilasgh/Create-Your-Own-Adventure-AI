@@ -20,7 +20,7 @@ class StoryGenerator:
         return ChatGroq(
             model="llama-3.1-8b-instant",
             temperature=0.2,
-            max_tokens=8192
+            max_tokens=4096  # Reduced to stay within rate limits
         )
 
     @classmethod
