@@ -4,7 +4,7 @@ from core.config import settings
 import os
 
 def send_verification_email(email: str, token: str):
-    verify_url = f"http://localhost:8000/api/auth/verify/{token}"
+    verify_url = f"http://localhost:8000/api/auth/verify?token={token}"
 
     print(os.getenv("HOST_EMAIL"))
     print(os.getenv("HOST_PASSWORD"))
