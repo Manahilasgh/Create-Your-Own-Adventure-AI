@@ -36,6 +36,7 @@ header {
 }
 
 header h1 {
+  font-family:cursive;
   color: var(--primary-color);
   margin-bottom: 0.5rem;
 }

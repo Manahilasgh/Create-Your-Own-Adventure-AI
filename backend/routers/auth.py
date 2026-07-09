@@ -21,7 +21,7 @@ def signup(data: UserSignup, db: Session = Depends(get_db)):
     user = User(
         username = data.username,
         email = data.email,
-        hash_password = hash_password(data.password),
+        hashed_password = hash_password(data.password),
         isVerified = False
     )
     db.add(user)
@@ -30,7 +30,7 @@ def signup(data: UserSignup, db: Session = Depends(get_db)):
     token = generate_verification_token(data.email)
     send_verification_email(data.email, token)
 
-    return {"message": "check your email to verify", "token": token}
+    return {"message": "check your email to verify"}
 
 @router.get("/verify")
 def verify_email(token: str, db: Session = Depends(get_db)):
@@ -48,8 +48,8 @@ def verify_email(token: str, db: Session = Depends(get_db)):
 def login(data: UserLogin, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.email == data.email).first()
 
-    if not user or not verify_password(data.password, user.hash_password):
-        raise HTTPException(status_code=401, detail="Invalid Credentials")
+    if not user or not verify_password(data.password, user.hashed_password):
+        raise HTTPException(status_code=401, detail="Invalid Credentials"   )
 
     if not user.isVerified:
         raise HTTPException(status_code=403, detail="User not verified")

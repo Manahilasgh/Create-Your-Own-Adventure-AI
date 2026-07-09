@@ -5,6 +5,10 @@ from core.config import settings
 from routers import story, job, auth
 from db.database import create_tables
 
+from dotenv import load_dotenv
+load_dotenv()
+
+
 create_tables()
 
 app = FastAPI(
