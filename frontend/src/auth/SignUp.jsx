@@ -1,6 +1,6 @@
 import "./auth.css"
 import { useState } from "react"
-import { Form, useNavigate } from "react-router-dom"
+import { Form, useNavigate, Link } from "react-router-dom"
 import { signup } from "../api/auth"
 
 const SignUp = () => {
@@ -28,6 +28,9 @@ const SignUp = () => {
                 <input type="password" onChange={e => setForm({...form, password: e.target.value})}/>
                 <button>SignUp</button>
             </form>
+            <p className="auth-link">
+                Already have an account? <Link to="/login">Login</Link>
+            </p>
         </div>
     )
     }
