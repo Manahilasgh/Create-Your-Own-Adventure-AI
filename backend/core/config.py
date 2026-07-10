@@ -22,9 +22,12 @@ class Settings(BaseSettings):
     #         db_name = os.getenv("DB_NAME")
     #         self.DATABASE_URL = f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
 
-    @field_validator("ALLOWED_ORIGINS")
-    def parse_allowed_origin(cls, v:str) -> List[str]:
-        return v.split(",") if v else []
+    @property
+    def allowed_origins(self) -> List[str]:
+        return [origin.strip() for origin in self.ALLOWED_ORIGINS.split(",") if origin.strip()]
+    # @field_validator("ALLOWED_ORIGINS")
+    # def parse_allowed_origin(cls, v:str) -> List[str]:
+    #     return v.split(",") if v else []
 
     class Config:
         env_file = ".env"
