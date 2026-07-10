@@ -4,7 +4,7 @@ from pydantic import field_validator
 import os
 
 class Settings(BaseSettings):
-    DATABASE_URL:str = None
+    DATABASE_URL:str
     API_PREFIX:str = "/api"
     DEBUG:bool = False
     ALLOWED_ORIGINS:str = ""
