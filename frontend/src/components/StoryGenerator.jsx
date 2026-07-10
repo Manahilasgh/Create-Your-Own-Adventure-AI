@@ -36,7 +36,7 @@ function StoryGenerator() {
         console.log(import.meta.env.VITE_API_URL);
 
         try {
-            const response = await api.post('/stories/create', theme)
+            const response = await api.post('/stories/create', {theme})
             const {job_id, status} = response.data
             setJobId(job_id)
             setJobStatus(status)
