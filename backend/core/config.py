@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     DATABASE_URL:str
     API_PREFIX:str = "/api"
     DEBUG:bool = False
-    ALLOWED_ORIGINS:str = ""
+    ALLOWED_ORIGINS: List[str] = []
     GROQ_API_KEY:str
     HOST_EMAIL:str
     HOST_PASSWORD:str
@@ -22,9 +22,12 @@ class Settings(BaseSettings):
     #         db_name = os.getenv("DB_NAME")
     #         self.DATABASE_URL = f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
 
-    @field_validator("ALLOWED_ORIGINS")
-    def parse_allowed_origin(cls, v:str) -> List[str]:
-        return v.split(",") if v else []
+    @field_validator("ALLOWED_ORIGINS", mode="before")
+    @classmethod
+    def parse_allowed_origin(cls, v):
+        if isinstance(v, str):
+            return [origin.strip() for origin in v.split(",")]
+        return v
 
     class Config:
         env_file = ".env"
