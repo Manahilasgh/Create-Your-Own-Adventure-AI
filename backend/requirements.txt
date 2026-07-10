@@ -6,4 +6,5 @@ psycopg2-binary>=2.9.11
 python-dotenv>=1.2.1
 sqlalchemy>=2.0.45
 uvicorn>=0.40.0
-passlib[bcrypt]>=1.7.4
+passlib[argon2,bcrypt]>=1.7.4
+python-jose>=3.5.0"
